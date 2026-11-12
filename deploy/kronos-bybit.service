@@ -1,0 +1,18 @@
+[Unit]
+Description=Kronos Bybit 24/7 Confluence Trading Daemon
+After=network.target network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=root
+WorkingDirectory=/opt/kronos-bybit
+ExecStart=/opt/kronos-bybit/.venv/bin/python -m bot.confluence_loop --live --interval 15 --circuit-breaker 950
+Restart=always
+RestartSec=10
+StandardOutput=journal
+StandardError=journal
+Environment=PYTHONUNBUFFERED=1
+
+[Install]
+WantedBy=multi-user.target

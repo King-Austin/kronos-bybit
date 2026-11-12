@@ -58,6 +58,30 @@ python -m bot.main --live --loop
 python -m bot.main --close          # flatten the open position
 ```
 
+Multi-timeframe confluence scanner (1h bias + 15m entry):
+
+```powershell
+python -m bot.confluence_scan
+python -m bot.confluence_loop --live --interval 15 --circuit-breaker 950
+```
+
+## 24/7 VPS Deployment
+
+A low-cost Linux VPS ($4-$6/mo, 1-2 vCPU, 2 GB RAM) runs this comfortably 24/7. In Europe or Asia, Bybit endpoints are unblocked.
+
+1. Clone to VPS `/opt/kronos-bybit`.
+2. Configure `.env` with your demo keys.
+3. Run automated setup:
+   ```bash
+   chmod +x deploy/setup_vps.sh
+   ./deploy/setup_vps.sh
+   ```
+4. Control with systemd:
+   ```bash
+   sudo systemctl status kronos-bybit
+   sudo journalctl -u kronos-bybit -f
+   ```
+
 ## Bybit demo wiring
 
 1. Log in to the **mainnet** account, switch to **Demo Trading** (it has its own UID).
