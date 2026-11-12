@@ -60,3 +60,4 @@ echo ""
 echo "  To stop the daemon, run:"
 echo "    sudo systemctl stop kronos-bybit"
 echo "======================================================"
+
